@@ -8,19 +8,29 @@ import static org.junit.Assert.*;
 
 public class SimilarityFinderTest {
     SimilarityFinder similarityFinder;
-    SequenceSearcherDoubler sequenceSearcherDoublerSearcher;
+    SequenceSearcherDoubler sequenceSearcherDoubler;
+    int[] seq1;
+    int[] seq2;
 
     @Before
     public void setUp() throws Exception {
-        sequenceSearcherDoublerSearcher = new SequenceSearcherDoubler();
-        similarityFinder = new SimilarityFinder(sequenceSearcherDoublerSearcher);
+        sequenceSearcherDoubler = new SequenceSearcherDoubler();
+        similarityFinder = new SimilarityFinder(sequenceSearcherDoubler);
     }
 
     @Test
     public void shouldReturnZeroIfThereAreNoSimilarities() {
-        int[] seq1 = {1, 2, 3 ,4, 5};
-        int[] seq2 = {6, 7 , 8, 9, 10};
+        seq1 = new int[]{1, 2, 3 ,4, 5};
+        seq2 = new int[]{6, 7 , 8, 9, 10};
 
         assertThat(0.0, is(similarityFinder.calculateJackardSimilarity(seq1, seq2)));
+    }
+
+    @Test
+    public void shouldReturnOneIfArraysAreTheSame() {
+        seq1 = new int[]{1, 2, 3 ,4, 5};
+        seq2 = new int[]{1, 2, 3 ,4, 5};
+
+        assertThat(1.0, is(similarityFinder.calculateJackardSimilarity(seq1, seq2)));
     }
 }
