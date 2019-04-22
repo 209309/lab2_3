@@ -52,4 +52,16 @@ public class SimilarityFinderTest {
 
         assertThat(3, is(sequenceSearcherDoubler.getCounter()));
     }
+
+    @Test
+    public void shouldReturnZeroIfThereAreNoEqualElements() {
+        seq1 = new int[]{1, 2, 3, 4};
+        seq2 = new int[]{5, 6};
+
+        sequenceSearcherDoubler = new SequenceSearcherDoubler();
+        similarityFinder = new SimilarityFinder(sequenceSearcherDoubler);
+        similarityFinder.calculateJackardSimilarity(seq1, seq2);
+
+        assertThat(0, is(sequenceSearcherDoubler.getCounter()));
+    }
 }
