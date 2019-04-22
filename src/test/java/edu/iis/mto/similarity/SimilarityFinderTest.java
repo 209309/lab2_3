@@ -33,4 +33,12 @@ public class SimilarityFinderTest {
 
         assertThat(1.0, is(similarityFinder.calculateJackardSimilarity(seq1, seq2)));
     }
+
+    @Test
+    public void shouldReturnOneIfArraysAreEmpty() {
+        seq1 = new int[]{};
+        seq2 = new int[]{};
+
+        assertThat(1.0, is(similarityFinder.calculateJackardSimilarity(seq1, seq2)));
+    }
 }
