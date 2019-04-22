@@ -14,8 +14,7 @@ public class SimilarityFinderTest {
 
     @Before
     public void setUp() throws Exception {
-        sequenceSearcherDoubler = new SequenceSearcherDoubler();
-        similarityFinder = new SimilarityFinder(sequenceSearcherDoubler);
+        similarityFinder = new SimilarityFinder(new SequenceSearcherDoubler());
     }
 
     @Test
@@ -40,5 +39,17 @@ public class SimilarityFinderTest {
         seq2 = new int[]{};
 
         assertThat(1.0, is(similarityFinder.calculateJackardSimilarity(seq1, seq2)));
+    }
+
+    @Test
+    public void shouldReturnThreeIfThereAreThreeElementsEqual() {
+        seq1 = new int[]{1, 2, 3, 6};
+        seq2 = new int[]{1, 2, 3, 4};
+
+        sequenceSearcherDoubler = new SequenceSearcherDoubler();
+        similarityFinder = new SimilarityFinder(sequenceSearcherDoubler);
+        similarityFinder.calculateJackardSimilarity(seq1, seq2);
+
+        assertThat(3, is(sequenceSearcherDoubler.getCounter()));
     }
 }

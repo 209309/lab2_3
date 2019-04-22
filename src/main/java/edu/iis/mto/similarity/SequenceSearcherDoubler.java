@@ -11,9 +11,9 @@ public class SequenceSearcherDoubler implements SequenceSearcher {
     @Override
     public SearchResult search(int elem, int[] seq) {
         Builder builder = SearchResult.builder();
-        counter = getCounter() + 1;
         for (int i = 0; i < seq.length; i++) {
             if (seq[i] == elem) {
+                counter = getCounter() + 1;
                 return builder.withFound(true).withPosition(i).build();
             }
         }
